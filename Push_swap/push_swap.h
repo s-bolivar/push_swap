@@ -12,7 +12,7 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "../Libft/libft.h"
+# include "Libft/libft.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
@@ -24,6 +24,7 @@ typedef struct s_stack
 	struct s_stack	*next;
 }	t_stack;
 
-int	ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
+char	*join_space(char const *s1, char const *s2);
 
 #endif

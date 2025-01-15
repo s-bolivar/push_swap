@@ -36,9 +36,9 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
-int main()
+/*int main()
 {
 	const char *str;
 	str = "+315";
 	printf("%d\n", ft_atoi(str));
-}
+}*/

@@ -23,11 +23,15 @@ int	ft_isdigit(int c)
 	}
 }
 
-/*#include <stdio.h>
+#include <stdio.h>
 int main()
 {
-    int prueba;
-    prueba = ft_isdigit('7');
-    printf("%d", prueba);
+    int 	prueba;
+	int		prueba2;
+
+
+    prueba = ft_isdigit('2');
+    printf("%d\n", prueba);
+
     return (0);
-}*/
+}

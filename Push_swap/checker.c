@@ -35,17 +35,36 @@ int	checknum(const char	*str)
 		return (0);
 }
 
-int	comparate(int ac, char **av)
+char	*join_str(int ac, char **av)
+{
+	int		i;
+	int		j;
+	char	*join;
+
+	j = 2;
+	i = 1;
+	join = join_space(av[i], av[j]);
+	while (i < ac)
+	{
+		j = i + 2;
+		if(j < ac)
+			join = join_space(join, av[j]);
+		i++;
+	}
+	return (join);
+}
+
+
+int	comparate(char **av)
 {
 	int	i;
 	int	j;
 
-	i = 1;
-
-	while (i < ac)
+	i = 0;
+	while (av[i])
 	{
 		j = i + 1;
-		while (j < ac)
+		while (av[j])
 		{
 			if (ft_strcmp(av[i], av[j]) == 0)
 				return (0);
@@ -58,14 +77,21 @@ int	comparate(int ac, char **av)
 	return (1);
 }
 
+int	checker(int ac, char **av)
+{
+	char	**str;
+	char	*join;
+
+	join = join_str(ac, av);
+	str = ft_split(join, ' ');
+	if (comparate(str))
+		return (1);
+	else
+		return (0);
+}
+
 int	main(int ac, char **av)
 {
-	int	i;
-
-	i = 1;
-	while (i < ac)
-	{
-		printf("%d", comparate(ac, av));
-		i++;
-	}
+		printf("%i\n", checker(ac, av));
+	return (0);
 }

@@ -40,6 +40,7 @@ char	*join_str(int ac, char **av)
 	int		i;
 	int		j;
 	char	*join;
+	char	*temp;
 
 	j = 2;
 	i = 1;
@@ -48,7 +49,11 @@ char	*join_str(int ac, char **av)
 	{
 		j = i + 2;
 		if(j < ac)
-			join = join_space(join, av[j]);
+		{
+			temp = join_space(join, av[j]);
+			free(join);
+			join = temp;
+		}
 		i++;
 	}
 	return (join);
@@ -77,21 +82,56 @@ int	comparate(char **av)
 	return (1);
 }
 
-int	checker(int ac, char **av)
+char	**checker(int ac, char **av)
 {
+	int		i;
 	char	**str;
 	char	*join;
 
+	i = 0;
 	join = join_str(ac, av);
+	while (join[i] == ' ' || (join[i] >= 9 && join[i] <= 13))
+		i++;
+	if (!join[i])
+		return (NULL);
+	i = 0;
 	str = ft_split(join, ' ');
-	if (comparate(str))
-		return (1);
+	if (comparate(str) == 0)
+		return (NULL);
+	if (comparate(str) == 1)
+		return (str);
 	else
-		return (0);
+	{
+		while (str[i])
+		{
+			free (str[i]);
+			i++;
+		}
+		 return (free(str), free(join), NULL);
+	}
 }
 
 int	main(int ac, char **av)
 {
-		printf("%i\n", checker(ac, av));
+	int i = 0;
+	char	**str = checker(ac, av);
+
+	if (!str)
+	{
+		printf("Error\n");
+		return (1);
+	}
+	while (str[i])
+	{
+		if(atol(str[i]) < INT_MIN || atol(str[i]) > INT_MAX)
+			{
+				printf("Error\n");
+				return (1);
+			}
+		printf("%ld\n", atol(str[i]));
+		free (str[i]);
+		i++;
+	}
+	free (str);
 	return (0);
 }

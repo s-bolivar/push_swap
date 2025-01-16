@@ -39,6 +39,6 @@ int	ft_atoi(const char *str)
 /*int main()
 {
 	const char *str;
-	str = "+315";
+	str = "221";
 	printf("%d\n", ft_atoi(str));
 }*/

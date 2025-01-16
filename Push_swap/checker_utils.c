@@ -53,3 +53,27 @@ char	*join_space(char const *s1, char const *s2)
 	res[i] = 0;
 	return (res);
 }
+
+long	atol(const char *str)
+{
+	long	res;
+	long	sign;
+
+	res = 0;
+	sign = 1;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (*str == '-')
+	{
+		sign *= -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while ('0' <= *str && *str <= '9')
+	{
+		res = (res * 10) + (*str - '0');
+		str++;
+	}
+	return (res * sign);
+}

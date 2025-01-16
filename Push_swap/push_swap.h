@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -26,5 +27,6 @@ typedef struct s_stack
 
 int		ft_strcmp(const char *s1, const char *s2);
 char	*join_space(char const *s1, char const *s2);
+long	atol(const char *str);
 
 #endif

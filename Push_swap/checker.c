@@ -94,21 +94,12 @@ char	**checker(int ac, char **av)
 		i++;
 	if (!join[i])
 		return (NULL);
-	i = 0;
 	str = ft_split(join, ' ');
 	if (comparate(str) == 0)
 		return (NULL);
 	if (comparate(str) == 1)
 		return (str);
-	else
-	{
-		while (str[i])
-		{
-			free (str[i]);
-			i++;
-		}
-		 return (free(str), free(join), NULL);
-	}
+	return (NULL);
 }
 
 int	main(int ac, char **av)

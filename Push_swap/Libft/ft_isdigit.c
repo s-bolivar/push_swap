@@ -11,16 +11,19 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	ft_isdigit(int c)
+int	ft_isdigit(char *c)
 {
-	if (c >= 48 && c <= 57)
-	{
+	int	i;
+	int size_total;
+
+	size_total = ft_strlen(c);
+	i = 0;
+	while (c[i] >= '0' && c[i] <= '9')
+		i++;
+	if (size_total == i)
 		return (1);
-	}
 	else
-	{
 		return (0);
-	}
 }
 
 #include <stdio.h>

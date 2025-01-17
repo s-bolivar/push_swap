@@ -6,11 +6,12 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:39:36 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/01/10 21:11:39 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/01/17 19:22:55 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int	checknum(const char	*str)
 {
@@ -48,7 +49,7 @@ char	*join_str(int ac, char **av)
 	while (i < ac)
 	{
 		j = i + 2;
-		if(j < ac)
+		if (j < ac)
 		{
 			temp = join_space(join, av[j]);
 			free(join);
@@ -58,7 +59,6 @@ char	*join_str(int ac, char **av)
 	}
 	return (join);
 }
-
 
 int	comparate(char **av)
 {
@@ -72,7 +72,10 @@ int	comparate(char **av)
 		while (av[j])
 		{
 			if (ft_strcmp(av[i], av[j]) == 0)
+			{
+				free (av);
 				return (0);
+			}
 			j++;
 		}
 		if (checknum(av[i]) == 0)
@@ -82,7 +85,7 @@ int	comparate(char **av)
 	return (1);
 }
 
-char	**checker(int ac, char **av)
+char	**join_and_separate(int ac, char **av)
 {
 	int		i;
 	char	**str;
@@ -94,32 +97,40 @@ char	**checker(int ac, char **av)
 		i++;
 	if (!join[i])
 		return (NULL);
+	i = 0;
 	str = ft_split(join, ' ');
-	if (comparate(str) == 0)
-		return (NULL);
 	if (comparate(str) == 1)
+	{
+		while (str[i])
+		{
+			if (atol(str[i]) < INT_MIN || atol(str[i]) > INT_MAX)
+				return (free (str), NULL);
+			i++;
+		}
+		if (ac != 2)
+			free (join);
 		return (str);
+	}
 	return (NULL);
 }
 
 int	main(int ac, char **av)
 {
-	int i = 0;
-	char	**str = checker(ac, av);
+	int		i;
+	char	**str;
 
-	if (!str)
+	if (ac == 1)
+		return (0);
+	str = join_and_separate(ac, av);
+	i = 0;
+	if (!str || !ft_strlen_strings(av))
 	{
 		printf("Error\n");
 		return (1);
 	}
 	while (str[i])
 	{
-		if(atol(str[i]) < INT_MIN || atol(str[i]) > INT_MAX)
-			{
-				printf("Error\n");
-				return (1);
-			}
-		printf("%ld\n", atol(str[i]));
+		printf("Argumento %d: %ld\n", i + 1, atol(str[i]));
 		free (str[i]);
 		i++;
 	}

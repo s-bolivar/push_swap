@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 19:50:49 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/01/16 12:27:22 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:30:50 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,12 @@ char	*join_space(char const *s1, char const *s2)
 	int		i;
 	int		j;
 
+	if (!s1)
+		return (NULL);
 	if (!s2)
 		return ((char *)s1);
 	i = 0;
-	res = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 2));
+	res = ft_calloc(sizeof(char), ((ft_strlen(s1) + ft_strlen(s2)) + 2));
 	while (s1[i] != 0)
 	{
 		res[i] = s1[i];
@@ -84,7 +86,6 @@ char	*join_space(char const *s1, char const *s2)
 		i++;
 		j++;
 	}
-	res[i] = 0;
 	return (res);
 }
 
@@ -110,4 +111,19 @@ long	atol(const char *str)
 		str++;
 	}
 	return (res * sign);
+}
+
+size_t	ft_strlen_strings(int ac, char **av)
+{
+	int		i;
+	char	*join;
+
+	join = join_str(ac, av);
+	i = 0;
+	av = ft_split(join, ' ');
+	while (av[i] != NULL && comparate(av))
+	{
+		i++;
+	}
+	return (i);
 }

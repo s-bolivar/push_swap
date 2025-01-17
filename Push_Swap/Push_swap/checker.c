@@ -6,7 +6,7 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:39:36 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/01/16 12:14:39 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/01/17 11:33:07 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	comparate(char **av)
 	return (1);
 }
 
-char	**checker(int ac, char **av)
+char	**join_and_separate(int ac, char **av)
 {
 	int		i;
 	char	**str;
@@ -94,11 +94,20 @@ char	**checker(int ac, char **av)
 		i++;
 	if (!join[i])
 		return (NULL);
+	i = 0;
 	str = ft_split(join, ' ');
 	if (comparate(str) == 0)
 		return (NULL);
 	if (comparate(str) == 1)
+	{
+		while (str[i])
+		{
+			if (atol(str[i]) < INT_MIN || atol(str[i]) > INT_MAX)
+				return (NULL);
+			i++;
+		}
 		return (str);
+	}
 	return (NULL);
 }
 
@@ -106,22 +115,21 @@ int	main(int ac, char **av)
 {
 	int		i;
 	char	**str;
+	int		comp;
 
-	str = checker(ac, av);
+	if (ac == 1)
+		return (0);
+	str = join_and_separate(ac, av);
 	i = 0;
-	if (!str)
+	comp = ft_strlen_strings(ac, av);
+	if (!str || ac != comp + 1)
 	{
 		printf("Error\n");
 		return (1);
 	}
 	while (str[i])
 	{
-		if (atol(str[i]) < INT_MIN || atol(str[i]) > INT_MAX)
-		{
-			printf("Error\n");
-			return (1);
-		}
-		printf("%ld\n", atol(str[i]));
+		printf("argumento %d: %ld\n", i, atol(str[i]));
 		free (str[i]);
 		i++;
 	}

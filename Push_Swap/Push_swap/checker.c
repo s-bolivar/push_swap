@@ -6,11 +6,12 @@
 /*   By: sbolivar <sbolivar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 19:39:36 by sbolivar          #+#    #+#             */
-/*   Updated: 2025/01/17 11:33:07 by sbolivar         ###   ########.fr       */
+/*   Updated: 2025/01/17 15:08:16 by sbolivar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
 
 int	checknum(const char	*str)
 {
@@ -58,7 +59,6 @@ char	*join_str(int ac, char **av)
 	}
 	return (join);
 }
-
 
 int	comparate(char **av)
 {
@@ -115,21 +115,19 @@ int	main(int ac, char **av)
 {
 	int		i;
 	char	**str;
-	int		comp;
 
 	if (ac == 1)
 		return (0);
 	str = join_and_separate(ac, av);
 	i = 0;
-	comp = ft_strlen_strings(ac, av);
-	if (!str || ac != comp + 1)
+	if (!str || !ft_strlen_strings(av))
 	{
 		printf("Error\n");
 		return (1);
 	}
 	while (str[i])
 	{
-		printf("argumento %d: %ld\n", i, atol(str[i]));
+		printf("Argumento %d: %ld\n", i + 1, atol(str[i]));
 		free (str[i]);
 		i++;
 	}

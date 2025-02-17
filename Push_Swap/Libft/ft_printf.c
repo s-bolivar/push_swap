@@ -17,7 +17,7 @@ int	ft_exclusive_putnbr_fd(unsigned int n)
 	size_t	i;
 
 	i = 0;
-	if (n < 0)
+	if (n)
 	{
 		i += ft_putchar_fd('-');
 		i += ft_putnbr_fd(-n);

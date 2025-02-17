@@ -33,5 +33,6 @@ char	**join_and_separate(int ac, char **av);
 char	*join_str(int ac, char **av);
 int		comparate(char **av);
 int		checknum(const char	*str);
+int		checker(int ac, char **av);
 
 #endif

@@ -25,16 +25,3 @@ int	ft_isdigit(char *c)
 	else
 		return (0);
 }
-
-#include <stdio.h>
-int main()
-{
-    int 	prueba;
-	int		prueba2;
-
-
-    prueba = ft_isdigit('2');
-    printf("%d\n", prueba);
-
-    return (0);
-}
